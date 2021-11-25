@@ -97,3 +97,6 @@
             </button>
           </div>
         </nav>
+        
+        <div class="main-panel">
+          <div class="content-wrapper">

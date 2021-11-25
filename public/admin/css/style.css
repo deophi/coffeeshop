@@ -11399,7 +11399,7 @@ input[type="button"].btn-block {
   flex-direction: column;
   min-width: 0;
   word-wrap: break-word;
-  /* background-color: #191c24; */
+  background-color: #191c24;
   background-clip: border-box;
   border: 1px solid rgba(0, 0, 0, 0.125);
   border-radius: 0.25rem; }
@@ -20195,7 +20195,7 @@ div.tagsinput {
 /* === Landing screens === */
 /* Auth */
 .auth.login-bg {
-  background: url("../../land/images/home-img.jpeg");
+  background: url("../images/auth/Login_bg.jpg");
   background-size: cover; }
 
 .auth .login-half-bg {
