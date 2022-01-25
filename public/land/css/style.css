@@ -72,6 +72,19 @@ section{
     letter-spacing: .2rem;
 }
 
+.mini-btn{
+    padding: 0px 15px 0px 15px;
+    display: inline-block;
+    font-size: 1.7rem;
+    color:#fff;
+    background: var(--main-color);
+    cursor: pointer;
+}
+
+.mini-btn:hover{
+    letter-spacing: .2rem;
+}
+
 .header{
     background: var(--bg);
     display: flex;

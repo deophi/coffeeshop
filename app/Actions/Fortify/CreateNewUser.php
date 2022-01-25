@@ -17,17 +17,18 @@ class CreateNewUser implements CreatesNewUsers{
 
     public function create(array $input){
         User::create([
-            'email'              => $input['email'],
-            'password'           => Hash::make($input['password']),
-            'level'              => 2
+            'email'    => $input['email'],
+            'password' => Hash::make($input['password']),
+            'level'    => 2,
+            'photo'    => 'admin.png'
         ]);
 
         return Biodata::create([
             'users_id' => User::max('id'),
             'nama'     => $input['nama'],
+            'jk'       => $input['jk'],
             'hp'       => $input['hp'],
-            'alamat'   => $input['alamat'],
-            'photo'    => 'default.jpg'
+            'alamat'   => $input['alamat']
         ]);
     }
 }

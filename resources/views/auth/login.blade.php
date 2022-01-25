@@ -1,5 +1,8 @@
 @section('title', 'Login')
 @include('auth.header')
+            <div class="card-auth col-md-8 col-lg-5">
+              <div class="card-body px-5 py-5">
+                <h3 class="card-title text-left mb-3">@yield('title')</h3>
                 <form action="{{ route('login') }}" method="post">
                   @csrf
                   <div class="form-group">

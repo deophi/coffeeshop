@@ -21,10 +21,11 @@ class User extends Authenticatable{
         'email',
         'password',
         'level',
+        'photo'
     ];
 
     public function Biodata(){
-        return $this->belongsTo('App\Models\Biodata', 'id', 'users_id');
+        return $this->belongsTo(Biodata::class, 'id', 'user_id');
     }
 
     protected $hidden = [

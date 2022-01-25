@@ -55,7 +55,7 @@
               <li class="nav-item dropdown">
                 <a class="nav-link" id="profileDropdown" href="#" data-toggle="dropdown">
                   <div class="navbar-profile">
-                    <img class="img-xs rounded-circle" src="{{ asset('images/profiles/'.Auth::user()->biodata->photo) }}" alt="">
+                    <img class="img-xs rounded-circle" src="{{ asset('images/profiles/'.Auth::user()->photo) }}" alt="">
                     <p class="mb-0 d-none d-sm-block navbar-profile-name">{{ Auth::user()->biodata->nama }}</p>
                     <i class="mdi mdi-menu-down d-none d-sm-block"></i>
                   </div>

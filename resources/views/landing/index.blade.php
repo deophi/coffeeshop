@@ -1,142 +1,49 @@
 @include('landing.header')    
     <section class="home" id="home">
       <div class="content">
-        <h3>fresh coffee in the morning</h3>
-        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Placeat labore, sint cupiditate distinctio tempora reiciendis.</p>
-        <a href="#" class="btn">get yours now</a>
+        <h3>Joe's Brother</h3>
+        <p>Nikmatnya santai sambil meminum segelas kopi.</p>
+        {{-- <a href="#" class="btn">get yours now</a> --}}
       </div>
     </section>
-    
-    <section class="about" id="about">
-      <h1 class="heading"> <span>about</span> us </h1>
-      <div class="row">
-        <div class="image">
-          <img src="{{ asset('land/images/about-img.jpeg') }}" alt="">
-        </div>
 
-        <div class="content">
-          <h3>what makes our coffee special?</h3>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus qui ea ullam, enim tempora ipsum fuga alias quae ratione a officiis id temporibus autem? Quod nemo facilis cupiditate. Ex, vel?</p>
-          <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Odit amet enim quod veritatis, nihil voluptas culpa! Neque consectetur obcaecati sapiente?</p>
-          <a href="#" class="btn">learn more</a>
-        </div>
+    <section class="menu" id="makanan">
+      <h1 class="heading"> menu <span>makanan</span></h1>
+      <div class="box-container">
+        @foreach($makanan as $r)
+          <div class="box">
+            <img src="{{ asset('images/produk/'.$r->photo) }}" alt="">
+            <h3>{{ $r->nama }}</h3>
+            <div class="price">Rp. {{ $r->harga }}</div>
+            @if(Auth::check())
+              <form method="post" action="{{ route('store') }}">
+                @csrf
+                <button class="btn">Tambah ke Keranjang</button><br>
+                <input type="hidden" name="id" value="{{ $r->id }}">
+                <input type="hidden" id="qty{{ $r->id }}" name="qty" value="1">
+              </form>
+            @else
+              <a href="{{ route('login') }}" class="btn">Tambah ke Keranjang</a><br>
+            @endif
+            <button class="btn" style="margin-right:25px;" onClick="kurang({{ $r->id }})">-</button>
+            <a id="counter{{ $r->id }}" class="price">1</a>
+            <button class="btn" style="margin-left:25px;" onClick="tambah({{ $r->id }})">+</button>
+          </div>
+        @endforeach
       </div>
     </section>
     
-    <section class="menu" id="makanan">
+    <section class="menu" id="minuman">
       <h1 class="heading"> our <span>menu</span></h1>
       <div class="box-container">
-        <div class="box">
-          <img src="{{ asset('land/images/menu-1.png') }}" alt="">
-          <h3>tasty and healty</h3>
-          <div class="price">$15.99 <span>20.99</span></div>
-          <a href="#" class="btn">add to cart</a>
-        </div>
-
-        <div class="box">
-          <img src="{{ asset('land/images/menu-2.png') }}" alt="">
-          <h3>tasty and healty</h3>
-          <div class="price">$15.99 <span>20.99</span></div>
-          <a href="#" class="btn">add to cart</a>
-        </div>
-
-        <div class="box">
-          <img src="{{ asset('land/images/menu-3.png') }}" alt="">
-          <h3>tasty and healty</h3>
-          <div class="price">$15.99 <span>20.99</span></div>
-          <a href="#" class="btn">add to cart</a>
-        </div>
-
-        <div class="box">
-          <img src="{{ asset('land/images/menu-4.png') }}" alt="">
-          <h3>tasty and healty</h3>
-          <div class="price">$15.99 <span>20.99</span></div>
-          <a href="#" class="btn">add to cart</a>
-        </div>
-
-        <div class="box">
-          <img src="{{ asset('land/images/menu-5.png') }}" alt="">
-          <h3>tasty and healty</h3>
-          <div class="price">$15.99 <span>20.99</span></div>
-          <a href="#" class="btn">add to cart</a>
-        </div>
-
-        <div class="box">
-          <img src="{{ asset('land/images/menu-6.png') }}" alt="">
-          <h3>tasty and healty</h3>
-          <div class="price">$15.99 <span>20.99</span></div>
-          <a href="#" class="btn">add to cart</a>
-        </div>
-      </div>
-    </section>
-
-    <section class="products" id="minuman">
-      <h1 class="heading"> our <span>products</span></h1>
-      <div class="box-container">
-        <div class="box">
-          <div class="icons">
-            <a href="#" class="fas fa-shopping-cart"></a>
-            <a href="#" class="fas fa-heart"></a>
-            <a href="#" class="fas fa-eye"></a>
+        @foreach($minuman as $r)
+          <div class="box">
+            <img src="{{ asset('images/produk/'.$r->photo) }}" alt="">
+            <h3>{{ $r->nama }}</h3>
+            <div class="price">Rp. {{ $r->harga }}</div>
+            <a href="#" class="btn">Tambah ke Keranjang</a>
           </div>
-          <div class="image">
-            <img src="{{ asset('land/images/product-1.png') }}" alt="">
-          </div>
-          <div class="content">
-            <h3>fresh coffee</h3>
-            <div class="stars">
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star-half-alt"></i>
-            </div>
-            <div class="price">$15.99 <span>$20.99</span></div>
-          </div>
-        </div>
-
-        <div class="box">
-          <div class="icons">
-            <a href="#" class="fas fa-shopping-cart"></a>
-            <a href="#" class="fas fa-heart"></a>
-            <a href="#" class="fas fa-eye"></a>
-          </div>
-          <div class="image">
-            <img src="{{ asset('land/images/product-2.png') }}" alt="">
-          </div>
-          <div class="content">
-            <h3>fresh coffee</h3>
-            <div class="stars">
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star-half-alt"></i>
-            </div>
-            <div class="price">$15.99 <span>$20.99</span></div>
-          </div>
-        </div>
-        <div class="box">
-          <div class="icons">
-            <a href="#" class="fas fa-shopping-cart"></a>
-            <a href="#" class="fas fa-heart"></a>
-            <a href="#" class="fas fa-eye"></a>
-          </div>
-          <div class="image">
-            <img src="{{ asset('land/images/product-3.png') }}" alt="">
-          </div>
-          <div class="content">
-            <h3>fresh coffee</h3>
-            <div class="stars">
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star-half-alt"></i>
-            </div>
-            <div class="price">$15.99 <span>$20.99</span></div>
-          </div>
-        </div>
+        @endforeach
       </div>
     </section>
 @include('landing.footer')

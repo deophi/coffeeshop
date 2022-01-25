@@ -8862,7 +8862,7 @@ pre {
   .jsgrid .jsgrid-table .jsgrid-filter-row select:focus, .jsgrid .jsgrid-table .jsgrid-filter-row input:focus[type=number], .select2-container--default .select2-selection--single:focus, .select2-container--default .select2-selection--single .select2-search__field:focus, .typeahead:focus,
   .tt-query:focus,
   .tt-hint:focus {
-    color: #495057;
+    color: #fff;
     background-color: #fff;
     border-color: #80bdff;
     outline: 0;
@@ -20195,7 +20195,7 @@ div.tagsinput {
 /* === Landing screens === */
 /* Auth */
 .auth.login-bg {
-  background: url("../images/auth/Login_bg.jpg");
+  background: url("../../images/home-img.jpeg");
   background-size: cover; }
 
 .auth .login-half-bg {
@@ -21133,3 +21133,30 @@ div.tagsinput {
   flex-grow: 1; }
 
 /*# sourceMappingURL=maps/style.css.map */
+
+.card-auth {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  word-wrap: break-word;
+  background-clip: border-box;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  border-radius: 0.25rem; }
+  .card-auth > hr {
+    margin-right: 0;
+    margin-left: 0; }
+  .card-auth > .list-group {
+    border-top: inherit;
+    border-bottom: inherit; }
+    .card-auth > .list-group:first-child {
+      border-top-width: 0;
+      border-top-left-radius: calc(0.25rem - 1px);
+      border-top-right-radius: calc(0.25rem - 1px); }
+    .card-auth > .list-group:last-child {
+      border-bottom-width: 0;
+      border-bottom-right-radius: calc(0.25rem - 1px);
+      border-bottom-left-radius: calc(0.25rem - 1px); }
+  .card-auth > .card-header + .list-group,
+  .card-auth > .list-group + .card-footer {
+    border-top: 0; }

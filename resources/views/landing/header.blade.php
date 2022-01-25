@@ -15,67 +15,47 @@
       <a href="{{ route('index') }}" class="logo"><img src="{{ asset('land/images/logo.png') }}" alt=""></a>
       <nav class="navbar">
         <a href="#home">home</a>
-        <a href="#about">about</a>
+        {{-- <a href="#about">about</a> --}}
         <a href="#makanan">makanan</a>
         <a href="#minuman">minuman</a>
       </nav>
       
       <div class="icons">
-        {{-- <div class="fas fa-search" id="search-btn"></div> --}}
         @if(!Auth::check())
           <a href="{{ route('login') }}">
-            <div class="fas fa-sign-in-alt"></div>
+            <div class="fas fa-sign-in-alt" title="Login"></div>
           </a>
         @else
           <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-            <div class="fas fa-sign-out-alt"></div>
+            <div class="fas fa-sign-out-alt" title="Logout"></div>
           </a>
           <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
             @csrf
           </form>
+          <div class="fas fa-shopping-cart" id="cart-btn" title="Keranjang Belanja"></div>
+          <div class="fas fa-bars" id="menu-btn"></div>
         @endif
-        <div class="fas fa-shopping-cart" id="cart-btn"></div>
-        <div class="fas fa-bars" id="menu-btn"></div>
       </div>
-      
-      {{-- <div class="search-form">
-        <input type="search" id="search-box" placeholder="search here...">
-        <label for="search-box" class="fas fa-search"></label>
-      </div> --}}
-
+      @if (Auth::check())
       <div class="cart-items-container">
-        <div class="cart-item">
-          <span class="fas fa-times"></span>
-          <img src="{{ asset('land/images/cart-item-1.png') }}" alt="">
-          <div class="content">
-            <h3>cart item 01</h3>
-            <div class="price">$15.99/-</div>
+        @foreach($cart as $r)
+          <div class="cart-item">
+            <form action="{{ route('destroy', $r->id) }}" method="POST">
+              @csrf
+              @method('delete')
+              <button class="fas fa-times"></button>
+            </form>
+            <img src="{{ asset('images/produk/'.$r->produk->photo) }}">
+            <div class="content">
+              <h3>{{ $r->produk->nama }}</h3>
+              <div class="price">Rp. {{ $r->produk->harga }}</div>
+              <div class="price">Jumlah: {{ $r->jumlah }}</div>
+              {{-- <div style="font-size: 20px;"><button class="mini-btn" onClick="cartdec({{ $r->id }})">-</button> <a id="cartqty{{ $r->id }}">{{ $r->jumlah }}</a> <button class="mini-btn" onClick="cartin({{ $r->id }})">+</button></div> --}}
+            </div>
           </div>
-        </div>
-        <div class="cart-item">
-          <span class="fas fa-times"></span>
-          <img src="{{ asset('land/images/cart-item-2.png') }}" alt="">
-          <div class="content">
-            <h3>cart item 02</h3>
-            <div class="price">$15.99/-</div>
-          </div>
-        </div>
-        <div class="cart-item">
-          <span class="fas fa-times"></span>
-          <img src="{{ asset('land/images/cart-item-3.png') }}" alt="">
-          <div class="content">
-            <h3>cart item 03</h3>
-            <div class="price">$15.99/-</div>
-          </div>
-        </div>
-        <div class="cart-item">
-          <span class="fas fa-times"></span>
-          <img src="{{ asset('land/images/cart-item-4.png') }}" alt="">
-          <div class="content">
-            <h3>cart item 04</h3>
-            <div class="price">$15.99/-</div>
-          </div>
-        </div>
+        @endforeach
+
         <a href="#" class="btn">checkout now</a>
       </div>
+      @endif
     </header>

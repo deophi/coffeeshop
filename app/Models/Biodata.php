@@ -7,9 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Biodata extends Model{
     use HasFactory;
-    protected $fillable = ['users_id', 'nama', 'hp', 'alamat', 'photo'];
+    protected $fillable = ['user_id', 'nama', 'hp', 'alamat', 'jk'];
 
     public function User(){
-        return $this->belongsTo('App\Models\User');
+        return $this->belongsTo(User::class);
     }
 }
