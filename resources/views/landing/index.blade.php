@@ -18,16 +18,17 @@
             @if(Auth::check())
               <form method="post" action="{{ route('store') }}">
                 @csrf
-                <button class="btn">Tambah ke Keranjang</button><br>
+                <button class="btn">Tambah ke Keranjang</button>
                 <input type="hidden" name="id" value="{{ $r->id }}">
-                <input type="hidden" id="qty{{ $r->id }}" name="qty" value="1">
+                <input type="hidden" id="qtymkn{{ $r->id }}" name="qty" value="1">
               </form>
             @else
-              <a href="{{ route('login') }}" class="btn">Tambah ke Keranjang</a><br>
+              <a href="{{ route('login') }}" class="btn">Tambah ke Keranjang</a>
             @endif
-            <button class="btn" style="margin-right:25px;" onClick="kurang({{ $r->id }})">-</button>
-            <a id="counter{{ $r->id }}" class="price">1</a>
-            <button class="btn" style="margin-left:25px;" onClick="tambah({{ $r->id }})">+</button>
+            <br>
+            <button class="btn" style="margin-right:25px;" onClick="kurangmkn({{ $r->id }})">-</button>
+            <a id="countermkn{{ $r->id }}" class="price">1</a>
+            <button class="btn" style="margin-left:25px;" onClick="tambahmkn({{ $r->id }})">+</button>
           </div>
         @endforeach
       </div>
@@ -41,7 +42,20 @@
             <img src="{{ asset('images/produk/'.$r->photo) }}" alt="">
             <h3>{{ $r->nama }}</h3>
             <div class="price">Rp. {{ $r->harga }}</div>
-            <a href="#" class="btn">Tambah ke Keranjang</a>
+            @if (Auth::check())
+              <form method="post" action="{{ route('store') }}">
+                @csrf
+                <input type="hidden" name="id" value="{{ $r->id }}">
+                <input type="hidden" id="qtymnm{{ $r->id }}" name="qty" value="1">
+                <button class="btn">Tambah ke Keranjang</button>
+              </form>
+            @else
+            <a href="{{ route('login') }}" class="btn">Tambah ke Keranjang</a>
+            @endif
+            <br>
+            <button class="btn" style="margin-right:25px;" onClick="kurangmnm({{ $r->id }})">-</button>
+            <a id="countermnm{{ $r->id }}" class="price">1</a>
+            <button class="btn" style="margin-left:25px;" onClick="tambahmnm({{ $r->id }})">+</button>
           </div>
         @endforeach
       </div>

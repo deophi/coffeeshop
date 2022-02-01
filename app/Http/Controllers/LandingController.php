@@ -16,7 +16,7 @@ class LandingController extends Controller{
         $minuman = Produk::where('jenis', 2)->get();
 
         if(Auth::check()){
-            $cart = Cart::where('biodata_id', Auth::user()->id)->get();
+            $cart = Cart::where('user_id', Auth::user()->id)->get();
             return view('landing.index', compact('cart', 'makanan', 'minuman'));
         }else{
             return view('landing.index', compact('makanan', 'minuman'));
@@ -25,12 +25,12 @@ class LandingController extends Controller{
 
     public function store(Request $req){
         // cek item cart
-        $cek = Cart::where('biodata_id', Auth::user()->id)->where('produk_id', $req->id)->first();
+        $cek = Cart::where('user_id', Auth::user()->id)->where('produk_id', $req->id)->first();
         if($cek == NULL){
             Cart::create([
-                'biodata_id' => Auth::user()->id,
-                'produk_id'  => $req->id,
-                'jumlah'      => $req->qty
+                'user_id'   => Auth::user()->id,
+                'produk_id' => $req->id,
+                'jumlah'    => $req->qty
             ]);
         }else{
             $hasil = $cek->jumlah + $req->qty;

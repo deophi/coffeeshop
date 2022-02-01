@@ -15,6 +15,7 @@ class HomeController extends Controller{
             return $next($request);
         });
     }
+    
     public function index(){
         return view('admin.index');
     }

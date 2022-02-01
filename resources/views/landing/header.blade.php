@@ -55,7 +55,7 @@
           </div>
         @endforeach
 
-        <a href="#" class="btn">checkout now</a>
+        <a href="{{ route('checkout.index') }}" class="btn">checkout now</a>
       </div>
       @endif
     </header>

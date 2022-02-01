@@ -2,15 +2,27 @@
 
 namespace App\Http\Controllers;
 
+use Auth;
+use File;
+
 use App\Models\{
     Produk,
     Tempat
 };
 use Carbon\Carbon;
-use File;
 use Illuminate\Http\Request;
 
 class ProdukController extends Controller{
+    public function __construct(){
+        $this->middleware(function ($request, $next) {
+            if(Auth::user()->level > 1){
+                return redirect()->route('index');
+            }
+
+            return $next($request);
+        });
+    }
+
     public function index(){
         $makanan = Produk::where('jenis', 1)->get();
         $minuman = Produk::where('jenis', 2)->get();

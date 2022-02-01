@@ -47,4 +47,6 @@
                   </div>
                   <p class="sign-up">Sudah memiliki akun? <a href="{{ route('login') }}">Login</a></p>
                 </form>
+              </div>
+            </div>
 @include('auth.footer')

@@ -8,14 +8,25 @@
     <link rel="stylesheet" href="{{ asset('admin/vendors/css/vendor.bundle.base.css') }}">
     <link rel="stylesheet" href="{{ asset('admin/css/style.css') }}">
     <link rel="shortcut icon" href="{{ asset('admin/images/favicon.png') }}" />
+
+    <!-- CSS Bootstrap Datepicker -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/css/bootstrap-datepicker.css">
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+
+    <!-- Javascript Bootstrap -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.js"></script>
+    <!-- Javascript Bootstrap Datepicker -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/js/bootstrap-datepicker.js"></script>
   </head>
   <body>
     <div class="container-scroller">
       <!-- partial:../../partials/_sidebar.html -->
       <nav class="sidebar sidebar-offcanvas" id="sidebar">
         <div class="sidebar-brand-wrapper d-none d-lg-flex align-items-center justify-content-center fixed-top">
-          <a class="sidebar-brand brand-logo" href="../../index.html"><img src="{{ asset('admin/images/logo.svg') }}" alt="logo" /></a>
-          <a class="sidebar-brand brand-logo-mini" href="../../index.html"><img src="{{ asset('admin/images/logo-mini.svg') }}" alt="logo" /></a>
+          <a class="sidebar-brand brand-logo" href="#"><img src="{{ asset('admin/images/logo.svg') }}" alt="logo" /></a>
+          <a class="sidebar-brand brand-logo-mini" href="#"><img src="{{ asset('admin/images/logo-mini.svg') }}" alt="logo" /></a>
         </div>
         <ul class="nav">
           <li class="nav-item menu-items">
@@ -26,6 +37,7 @@
               <span class="menu-title">Dashboard</span>
             </a>
           </li>
+          @if(Auth::user()->level == 1)
           <li class="nav-item menu-items">
             <a class="nav-link" href="{{ route('produk.index') }}">
               <span class="menu-icon">
@@ -33,7 +45,8 @@
               </span>
               <span class="menu-title">Produk</span>
             </a>
-            </li>
+          </li>
+          @endif
         </ul>
       </nav>
       <!-- partial -->

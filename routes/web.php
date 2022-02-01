@@ -18,5 +18,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('dashboard', [HomeController::class, 'index'])->name('dashboard.index');
     Route::resource('tempat', TempatController::class);
     Route::resource('produk', ProdukController::class);
+
+    Route::get('checkout=check', [ProsesController::class, 'cekTempat'])->name('cekTempat');
     Route::resource('checkout', ProsesController::class);
 });
