@@ -71,7 +71,14 @@
                   <td>{{ $r->tempat->nama }}</td>
                   <td>{{ Carbon\Carbon::parse($r->waktu)->translatedFormat('l, d F Y - H:i')}}</td>
                   <td> Rp. {{ $r->harga }} </td>
-                  <td width="10px"><a href="" class="btn btn-outline-warning">Selesai</a></td>
+                  <td width="10px">
+                    <form action="{{ route('checkout.update', $r->id) }}" method="POST">
+                      @csrf
+                      @method('patch')
+                      <input type="hidden" name="status" value="2">
+                      <button class="btn btn-outline-warning">Selesai</button>
+                    </form>
+                  </td>
                 </tr>
                 <tr>
                   <th></th>

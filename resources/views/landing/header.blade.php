@@ -18,6 +18,9 @@
         {{-- <a href="#about">about</a> --}}
         <a href="#makanan">makanan</a>
         <a href="#minuman">minuman</a>
+        @if (Auth::check())
+        <a href="{{ route('profil.index') }}">Profil</a>
+        @endif
       </nav>
       
       <div class="icons">

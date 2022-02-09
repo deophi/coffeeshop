@@ -5,6 +5,6 @@
             </div>
             <div class="row ">
               @include('setting.listrekening')
-              @include('setting.tambahrekening')
+              @include('setting.editrekening')
             </div>
 @include('admin.footer')

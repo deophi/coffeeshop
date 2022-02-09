@@ -13,17 +13,15 @@
             </div>
           </div>
           <div class="row bg-gray-dark d-flex d-md-block d-xl-flex flex-row py-3 px-4 px-md-3 px-xl-4 rounded mt-3">
+            @foreach ($rekening as $r)
             <div class="col-6 col-lg-7 text-md-center text-xl-left">
-              <h6 class="mb-1">BCA</h6>
-              <p class="text-muted mb-0">023943590</p>
-              <h6 class="mb-1">BCA</h6>
-              <p class="text-muted mb-0">023943590</p>
-              <h6 class="mb-1">BCA</h6>
-              <p class="text-muted mb-0">023943590</p>
+              <h6 class="mb-1">{{ $r->bank }}</h6>
+              <p class="text-muted mb-0">{{ $r->norek }}</p>
             </div>
             <div class="col-6 col-lg-5 align-self-center flex-grow text-right text-md-center text-xl-right py-md-2 py-xl-0">
-              <h6 class="font-weight-bold mb-0">Joe Rekening</h6>
+              <h6 class="font-weight-bold mb-0">{{ $r->nama }}</h6>
             </div>
+            @endforeach
           </div>
           <div class="row bg-gray-dark d-flex d-md-block d-xl-flex flex-row py-3 px-4 px-md-3 px-xl-4 rounded mt-3">
             <div class="col-6 col-lg-7 text-md-center text-xl-left">
@@ -31,7 +29,7 @@
               <p class="text-muted mb-0">Melalui WhatsApp</p>
             </div>
             <div class="col-6 col-lg-5 align-self-center flex-grow text-right text-md-center text-xl-right py-md-2 py-xl-0">
-              <h6 class="font-weight-bold mb-0"><a href="#" style="text-decoration: none; color: yellow;">Link WhatsApp</a></h6>
+              <h6 class="font-weight-bold mb-0"><a href="http://wa.me/62{{ $setting->wa }}" target="_blank" style="text-decoration: none; color: yellow;">Link WhatsApp</a></h6>
             </div>
           </div>
         </div>

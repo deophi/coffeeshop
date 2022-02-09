@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\{
     Cart,
+    Rekening,
+    Setting,
     Tempat,
     Transaksi,
     Transaksi_detail
@@ -61,8 +63,10 @@ class ProsesController extends Controller{
     }
 
     public function show($id){
+        $rekening  = Rekening::all();
+        $setting   = Setting::findorfail(1);
         $transaksi = Transaksi::findorfail($id);
-        return view('proses.pembayaran', compact('transaksi'));
+        return view('proses.pembayaran', compact('rekening', 'setting', 'transaksi'));
     }
 
     public function update(Request $request, $id){

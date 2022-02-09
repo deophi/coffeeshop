@@ -13,7 +13,7 @@
           <div class="form-group">
             <input type="text" name="nama" class="form-control" placeholder="Atas Nama">
           </div>
-          <button class="btn btn-warning float-right">Tambah</button>
+          <button class="btn btn-outline-warning float-right">Tambah</button>
         </form>
       </div>
     </div>

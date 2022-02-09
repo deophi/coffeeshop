@@ -2,18 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Rekening;
+use App\Models\{
+    Rekening,
+    Setting
+};
 use Illuminate\Http\Request;
 
 class RekeningController extends Controller{
-    public function index(){
-        //
-    }
-
-    public function create(){
-        //
-    }
-
     public function store(Request $request){
         Rekening::create([
             'bank'  => $request->bank,
@@ -24,29 +19,25 @@ class RekeningController extends Controller{
         return redirect()->back()->with('tambah', 'Rekening berhasil ditambahkan.');
     }
 
-    public function show($id){
-        //
-    }
-
     public function edit($id){
         $item     = Rekening::findorfail($id);
         $rekening = Rekening::all();
+        $setting  = Setting::findorfail(1);
 
-        return view('setting.editrekening', compact('item', 'rekening'));
+        return view('setting.edit', compact('item', 'rekening', 'setting'));
     }
 
     public function update(Request $request, $id){
-        //
+        Rekening::whereId($id)->update([
+            'bank'  => $request->bank,
+            'norek' => $request->norek,
+            'nama'  => $request->nama
+        ]);
+        return redirect()->route('setting.index');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+    public function destroy($id){
+        Rekening::whereId($id)->delete();
+        return redirect()->back()->with('hapus', 'Rekening berhasil dihapus.');
     }
 }
