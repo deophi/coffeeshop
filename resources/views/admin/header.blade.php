@@ -25,8 +25,8 @@
       <!-- partial:../../partials/_sidebar.html -->
       <nav class="sidebar sidebar-offcanvas" id="sidebar">
         <div class="sidebar-brand-wrapper d-none d-lg-flex align-items-center justify-content-center fixed-top">
-          <a class="sidebar-brand brand-logo" href="#"><img src="{{ asset('admin/images/logo.svg') }}" alt="logo" /></a>
-          <a class="sidebar-brand brand-logo-mini" href="#"><img src="{{ asset('admin/images/logo-mini.svg') }}" alt="logo" /></a>
+          <a class="sidebar-brand brand-logo" href="#">Joe's Brother</a>
+          <a class="sidebar-brand brand-logo-mini" href="#">Joe</a>
         </div>
         <ul class="nav">
           <li class="nav-item menu-items">
@@ -44,6 +44,14 @@
                 <i class="mdi mdi-playlist-play"></i>
               </span>
               <span class="menu-title">Produk</span>
+            </a>
+          </li>
+          <li class="nav-item menu-items">
+            <a class="nav-link" href="{{ route('setting.index') }}">
+              <span class="menu-icon">
+                <i class="mdi mdi-playlist-play"></i>
+              </span>
+              <span class="menu-title">Pengaturan</span>
             </a>
           </li>
           @endif

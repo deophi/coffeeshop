@@ -24,7 +24,7 @@ class CreateNewUser implements CreatesNewUsers{
         ]);
 
         return Biodata::create([
-            'users_id' => User::max('id'),
+            'user_id'  => User::max('id'),
             'nama'     => $input['nama'],
             'jk'       => $input['jk'],
             'hp'       => $input['hp'],

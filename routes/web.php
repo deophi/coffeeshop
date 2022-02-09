@@ -6,6 +6,8 @@ use App\Http\Controllers\{
     LandingController,
     ProdukController,
     ProsesController,
+    RekeningController,
+    SettingController,
     TempatController
 };
 
@@ -15,9 +17,11 @@ Route::resource('/', LandingController::class);
 Route::delete('{id}', [LandingController::class, 'destroy'])->name('index.destroy');
 
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
-    Route::get('dashboard', [HomeController::class, 'index'])->name('dashboard.index');
-    Route::resource('tempat', TempatController::class);
+    Route::resource('dashboard', HomeController::class);
     Route::resource('produk', ProdukController::class);
+    Route::resource('rekening', RekeningController::class);
+    Route::resource('setting', SettingController::class);
+    Route::resource('tempat', TempatController::class);
 
     Route::get('checkout=check', [ProsesController::class, 'cekTempat'])->name('cekTempat');
     Route::resource('checkout', ProsesController::class);

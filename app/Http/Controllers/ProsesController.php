@@ -64,4 +64,16 @@ class ProsesController extends Controller{
         $transaksi = Transaksi::findorfail($id);
         return view('proses.pembayaran', compact('transaksi'));
     }
+
+    public function update(Request $request, $id){
+        Transaksi::whereId($id)->update(['status' => $request->status]);
+        
+        return redirect()->back()->with('update', 'Booking diupdate.');
+    }
+
+    public function destroy($id){
+        Transaksi::destroy($id);
+
+        return redirect()->back()->with('delete', 'Pemesanan ditolak.');
+    }
 }
