@@ -23,7 +23,7 @@
                   <td>{{ $r->biodata->nama }}</td>
                   <td>{{ $r->tempat->nama }}</td>
                   <td>{{ Carbon\Carbon::parse($r->waktu)->translatedFormat('l, d F Y - H:i')}}</td>
-                  <td> Rp. {{ $r->harga }} </td>
+                  <td> Rp. {{ number_format($r->harga, 0,',','.') }} </td>
                   <td width="10px">
                     <form action="{{ route('checkout.update', $r->id) }}" method="POST">
                       @csrf
@@ -70,7 +70,7 @@
                   <td>{{ $r->biodata->nama }}</td>
                   <td>{{ $r->tempat->nama }}</td>
                   <td>{{ Carbon\Carbon::parse($r->waktu)->translatedFormat('l, d F Y - H:i')}}</td>
-                  <td> Rp. {{ $r->harga }} </td>
+                  <td> Rp. {{ number_format($r->harga, 0,',','.') }} </td>
                   <td width="10px">
                     <form action="{{ route('checkout.update', $r->id) }}" method="POST">
                       @csrf
@@ -93,7 +93,13 @@
                   @foreach ($order as $t)
                     <td></td>
                     <td></td>
-                    <td><img src="{{ asset('images/produk/'.$t->produk->photo) }}" alt="image" />     {{ $t->produk->nama }}</td>
+                    <td>
+                      @if($t->produk_id == NULL)
+                        NULL
+                      @else
+                        <img src="{{ asset('images/produk/'.$t->produk->photo) }}" alt="image" />     {{ $t->produk->nama }}
+                      @endif
+                    </td>
                     <td>{{ $t->jumlah }}</td>
                   @endforeach
                 </tr>

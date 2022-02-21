@@ -3,6 +3,11 @@
             <div class="card-auth col-md-8 col-lg-5">
               <div class="card-body px-5 py-5">
                 <h3 class="card-title text-left mb-3">@yield('title')</h3>
+                @if(Session::has('pesan'))
+                  <blockquote class="blockquote blockquote-warning">
+                    <p>{{ Session('pesan') }}</p>
+                  </blockquote>
+                @endif
                 <form action="{{ route('login') }}" method="post">
                   @csrf
                   <div class="form-group">

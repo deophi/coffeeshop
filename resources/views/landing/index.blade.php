@@ -14,7 +14,7 @@
           <div class="box">
             <img src="{{ asset('images/produk/'.$r->photo) }}" alt="">
             <h3>{{ $r->nama }}</h3>
-            <div class="price">Rp. {{ $r->harga }}</div>
+            <div class="price">Rp. {{ number_format($r->harga, 0,',','.') }}</div>
             @if(Auth::check())
               <form method="post" action="{{ route('store') }}">
                 @csrf
@@ -41,7 +41,7 @@
           <div class="box">
             <img src="{{ asset('images/produk/'.$r->photo) }}" alt="">
             <h3>{{ $r->nama }}</h3>
-            <div class="price">Rp. {{ $r->harga }}</div>
+            <div class="price">Rp. {{ number_format($r->harga, 0,',','.') }}</div>
             @if (Auth::check())
               <form method="post" action="{{ route('store') }}">
                 @csrf

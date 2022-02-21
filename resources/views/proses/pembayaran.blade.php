@@ -9,7 +9,7 @@
               <p class="text-muted mb-0">Kirim bukti pembayaran maksimal 15 menit sebelum waktu booking tempat dengan minimal pembayaran Rp. {{ $transaksi->harga * 0.5 }} sebagai uang muka.</p>
             </div>
             <div class="col-4 col-lg-3 align-self-center flex-grow text-right text-md-center text-xl-right py-md-2 py-xl-0">
-              <h6 class="font-weight-bold mb-0">Rp. {{ $transaksi->harga }}</h6>
+              <h6 class="font-weight-bold mb-0">Rp. {{ number_format($transaksi->harga, 0,',','.') }}</h6>
             </div>
           </div>
           <div class="row bg-gray-dark d-flex d-md-block d-xl-flex flex-row py-3 px-4 px-md-3 px-xl-4 rounded mt-3">

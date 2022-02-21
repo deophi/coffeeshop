@@ -24,8 +24,8 @@
                         <p class="text-muted mb-0">Jumlah: {{ $r->jumlah }}</p>
                       </div>
                       <div class="mr-auto text-sm-right pt-2 pt-sm-0">
-                        <p class="text-muted">Rp. {{ $r->produk->harga }} / pcs</p>
-                        <p class="text-muted mb-0">Sub Total: Rp. {{ $r->produk->harga * $r->jumlah }} </p>
+                        <p class="text-muted">Rp. {{ number_format($r->produk->harga, 0,',','.') }} / pcs</p>
+                        <p class="text-muted mb-0">Sub Total: Rp. {{ number_format($r->produk->harga * $r->jumlah, 0,',','.') }} </p>
                       </div>
                     </div>
                   </div>                
@@ -61,7 +61,6 @@
                     @if (sprintf("%02d", $i).':00' != $jam)
                     <option value="{{ sprintf("%02d", $i) }}:00">{{ sprintf("%02d", $i) }}:00</option>
                     @endif
-                    
                   @endfor
                 </select>
               </div>
@@ -78,6 +77,8 @@
                 $terpakai = App\Models\Transaksi::whereDate('waktu', Carbon\Carbon::parse($tgl)->format('Y-m-d'))->whereTime('waktu', $jam)->where('tempat_id', $r->id)->count();
                 $tersedia = $r->stok - $terpakai;
               ?>
+              <input type="hidden" name="tgl" value="{{ $tgl }}">
+              <input type="hidden" name="jam" value="{{ $jam }}">
               <div class="preview-item border-bottom">
                 <div class="preview-thumbnail">
                   <img src="{{ asset('images/tempat/'.$r->photo) }}" alt="image" class="rounded-circle" />

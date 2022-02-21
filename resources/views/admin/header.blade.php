@@ -54,6 +54,15 @@
               <span class="menu-title">Pengaturan</span>
             </a>
           </li>
+          @else
+          <li class="nav-item menu-items">
+            <a class="nav-link" href="{{ route('statusOrder.index') }}">
+              <span class="menu-icon">
+                <i class="mdi mdi-playlist-play"></i>
+              </span>
+              <span class="menu-title">Status Order</span>
+            </a>
+          </li>
           @endif
         </ul>
       </nav>
@@ -82,7 +91,7 @@
                   </div>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="profileDropdown">
-                  <h6 class="p-3 mb-0">Profile</h6>
+                  <h6 class="p-3 mb-0">Profil</h6>
                   <div class="dropdown-divider"></div>
                   <a class="dropdown-item preview-item">
                     <div class="preview-thumbnail">
@@ -91,7 +100,13 @@
                       </div>
                     </div>
                     <div class="preview-item-content">
-                      <p class="preview-subject mb-1">Settings</p>
+                      @if (Auth::user()->level == 1)
+                        <p class="preview-subject mb-1" href="{{ route('setting.index') }}" onclick="event.preventDefault(); document.getElementById('setting-form').submit();">Pengaturan</p>
+                        <form id="setting-form" action="{{ route('setting.index') }}" style="display: none;"></form>
+                      @else
+                        <p class="preview-subject mb-1" href="{{ route('profil.index') }}" onclick="event.preventDefault(); document.getElementById('setting-form').submit();">Pengaturan</p>
+                        <form id="setting-form" action="{{ route('profil.index') }}" style="display: none;"></form>
+                      @endif
                     </div>
                   </a>
                   <div class="dropdown-divider"></div>

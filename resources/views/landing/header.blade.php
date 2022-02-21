@@ -19,7 +19,7 @@
         <a href="#makanan">makanan</a>
         <a href="#minuman">minuman</a>
         @if (Auth::check())
-        <a href="{{ route('profil.index') }}">Profil</a>
+          <a href="{{ route('statusOrder.index') }}">Status Order</a>
         @endif
       </nav>
       
@@ -51,7 +51,7 @@
             <img src="{{ asset('images/produk/'.$r->produk->photo) }}">
             <div class="content">
               <h3>{{ $r->produk->nama }}</h3>
-              <div class="price">Rp. {{ $r->produk->harga }}</div>
+              <div class="price">Rp. {{ number_format($r->produk->harga, 0,',','.') }}</div>
               <div class="price">Jumlah: {{ $r->jumlah }}</div>
               {{-- <div style="font-size: 20px;"><button class="mini-btn" onClick="cartdec({{ $r->id }})">-</button> <a id="cartqty{{ $r->id }}">{{ $r->jumlah }}</a> <button class="mini-btn" onClick="cartin({{ $r->id }})">+</button></div> --}}
             </div>

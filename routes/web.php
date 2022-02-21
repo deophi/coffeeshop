@@ -9,6 +9,7 @@ use App\Http\Controllers\{
     ProsesController,
     RekeningController,
     SettingController,
+    StatusOrderController,
     TempatController
 };
 
@@ -27,5 +28,6 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     
     Route::resource('rekening', RekeningController::class);
     Route::resource('setting', SettingController::class);
+    Route::resource('statusOrder', StatusOrderController::class);
     Route::resource('tempat', TempatController::class);
 });

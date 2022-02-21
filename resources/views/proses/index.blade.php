@@ -24,8 +24,8 @@
                         <p class="text-muted mb-0">Jumlah: {{ $r->jumlah }}</p>
                       </div>
                       <div class="mr-auto text-sm-right pt-2 pt-sm-0">
-                        <p class="text-muted">Rp. {{ $r->produk->harga }} / pcs</p>
-                        <p class="text-muted mb-0">Sub Total: Rp. {{ $r->produk->harga * $r->jumlah }} </p>
+                        <p class="text-muted">Rp. {{ number_format($r->produk->harga, 0,',','.') }} / pcs</p>
+                        <p class="text-muted mb-0">Sub Total: Rp. {{ number_format($r->produk->harga * $r->jumlah, 0,',','.') }} </p>
                       </div>
                     </div>
                   </div>                

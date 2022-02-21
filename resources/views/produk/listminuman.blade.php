@@ -25,7 +25,7 @@
                                 <span class="pl-2">{{ $r->nama }}</span>
                               </td>
                               <td><img src="{{ asset('images/produk/'.$r->photo) }}" alt="image" /></td>
-                              <td> Rp. {{ $r->harga }} </td>
+                              <td> Rp. {{ number_format($r->harga, 0,',','.') }} </td>
                               <td width="30px">
                                 <form method="post" action="{{ route('produk.destroy', $r->id) }}">
                                   @csrf
