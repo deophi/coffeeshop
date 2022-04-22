@@ -11,7 +11,7 @@
                         <input type="text" class="form-control" name="nama" value="{{ $produk->nama }}">
                       </div>
                       <div class="form-group">
-                        <input type="number" class="form-control" name="harga" value="{{ number_format($produk->harga, 0,',','.') }}">
+                        <input type="number" class="form-control" name="harga" value="{{ $produk->harga }}">
                       </div>
                       <div class="form-group">
                         <input type="file" name="img" class="file-upload-default">

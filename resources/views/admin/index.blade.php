@@ -21,7 +21,13 @@
               @foreach ($transaksi as $r)
                 <tr>
                   <td>{{ $r->biodata->nama }}</td>
-                  <td>{{ $r->tempat->nama }}</td>
+                  <td>
+                    @if ($r->tempat_id == NULL)
+                      -
+                    @else
+                      {{ $r->tempat->nama }}
+                    @endif
+                  </td>
                   <td>{{ Carbon\Carbon::parse($r->waktu)->translatedFormat('l, d F Y - H:i')}}</td>
                   <td> Rp. {{ number_format($r->harga, 0,',','.') }} </td>
                   <td width="10px">
@@ -68,7 +74,13 @@
               @foreach ($pesanan as $r)
                 <tr>
                   <td>{{ $r->biodata->nama }}</td>
-                  <td>{{ $r->tempat->nama }}</td>
+                  <td>
+                    @if($r->tempat_id == NULL)
+                      -
+                    @else
+                      {{ $r->tempat->nama }}
+                    @endif
+                  </td>
                   <td>{{ Carbon\Carbon::parse($r->waktu)->translatedFormat('l, d F Y - H:i')}}</td>
                   <td> Rp. {{ number_format($r->harga, 0,',','.') }} </td>
                   <td width="10px">

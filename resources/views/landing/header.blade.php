@@ -4,15 +4,16 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
+
     <title>{{ config('app.name') }}</title>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" href="{{ asset('land/css/style.css') }}">
+    <link rel="shortcut icon" href="{{ asset('images/joesbrother.png') }}" />
   </head>
   <body>
     <header class="header">
-      <a href="{{ route('index') }}" class="logo"><img src="{{ asset('land/images/logo.png') }}" alt=""></a>
+      <a href="{{ route('index') }}" class="logo"><img src="{{ asset('images/joesbrother.png') }}" alt=""></a>
       <nav class="navbar">
         <a href="#home">home</a>
         {{-- <a href="#about">about</a> --}}
@@ -22,7 +23,7 @@
           <a href="{{ route('statusOrder.index') }}">Status Order</a>
         @endif
       </nav>
-      
+
       <div class="icons">
         @if(!Auth::check())
           <a href="{{ route('login') }}">

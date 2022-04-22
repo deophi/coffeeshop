@@ -28,13 +28,13 @@
                         <p class="text-muted mb-0">Sub Total: Rp. {{ number_format($r->produk->harga * $r->jumlah, 0,',','.') }} </p>
                       </div>
                     </div>
-                  </div>                
+                  </div>
                 @endforeach
               </div>
             </div>
             <div class="col-12"><a class="btn btn-outline-warning" href="{{ route('index') }}">Ubah Pesanan</a></div>
           </div>
-          
+
         </div>
       </div>
     </div>
@@ -56,7 +56,7 @@
               <div class="form-group col-12 row">
                 <label class="col-4 col-form-label">Jam</label>
                 <select class="form-control col-3" name="jam">
-                  @for ($i = 8; $i < 21; $i++)
+                  @for ($i = 10; $i < 22; $i++)
                     <option value="{{ sprintf("%02d", $i) }}:00">{{ sprintf("%02d", $i); }}:00</option>
                   @endfor
                 </select>

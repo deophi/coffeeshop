@@ -1,4 +1,4 @@
-@section('title', 'Dashboard')
+@section('title', 'Edit Produk')
 @include('admin.header')
             <div class="row ">
               @include('produk.listmakanan')

@@ -1,4 +1,4 @@
-@include('landing.header')    
+@include('landing.header')
     <section class="home" id="home">
       <div class="content">
         <h3>Joe's Brother</h3>
@@ -22,18 +22,18 @@
                 <input type="hidden" name="id" value="{{ $r->id }}">
                 <input type="hidden" id="qtymkn{{ $r->id }}" name="qty" value="1">
               </form>
+              <br>
+              <button class="btn" style="margin-right:25px;" onClick="kurangmkn({{ $r->id }})">-</button>
+              <a id="countermkn{{ $r->id }}" class="price">1</a>
+              <button class="btn" style="margin-left:25px;" onClick="tambahmkn({{ $r->id }})">+</button>
             @else
-              <a href="{{ route('login') }}" class="btn">Tambah ke Keranjang</a>
+              <a href="{{ route('login') }}" class="btn">Login untuk pesan</a>
             @endif
-            <br>
-            <button class="btn" style="margin-right:25px;" onClick="kurangmkn({{ $r->id }})">-</button>
-            <a id="countermkn{{ $r->id }}" class="price">1</a>
-            <button class="btn" style="margin-left:25px;" onClick="tambahmkn({{ $r->id }})">+</button>
           </div>
         @endforeach
       </div>
     </section>
-    
+
     <section class="menu" id="minuman">
       <h1 class="heading"> our <span>menu</span></h1>
       <div class="box-container">
@@ -49,13 +49,13 @@
                 <input type="hidden" id="qtymnm{{ $r->id }}" name="qty" value="1">
                 <button class="btn">Tambah ke Keranjang</button>
               </form>
+              <br>
+              <button class="btn" style="margin-right:25px;" onClick="kurangmnm({{ $r->id }})">-</button>
+              <a id="countermnm{{ $r->id }}" class="price">1</a>
+              <button class="btn" style="margin-left:25px;" onClick="tambahmnm({{ $r->id }})">+</button>
             @else
-            <a href="{{ route('login') }}" class="btn">Tambah ke Keranjang</a>
+            <a href="{{ route('login') }}" class="btn">Login untuk pesan</a>
             @endif
-            <br>
-            <button class="btn" style="margin-right:25px;" onClick="kurangmnm({{ $r->id }})">-</button>
-            <a id="countermnm{{ $r->id }}" class="price">1</a>
-            <button class="btn" style="margin-left:25px;" onClick="tambahmnm({{ $r->id }})">+</button>
           </div>
         @endforeach
       </div>

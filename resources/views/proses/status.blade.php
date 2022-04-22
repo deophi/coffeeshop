@@ -19,7 +19,13 @@
             <tbody>
               @foreach ($order as $r)
                 <tr>
-                  <td>{{ $r->tempat->nama }}</td>
+                  <td>
+                    @if($r->tempat_id == NULL)
+                      -
+                    @else
+                      {{ $r->tempat->nama }}
+                    @endif
+                  </td>
                   <td>{{ Carbon\Carbon::parse($r->waktu)->translatedFormat('l, d F Y - H:i')}}</td>
                   <td> Rp. {{ number_format($r->harga, 0,',','.') }} </td>
                   <td>
