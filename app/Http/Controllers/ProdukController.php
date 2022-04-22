@@ -84,11 +84,12 @@ class ProdukController extends Controller{
         }
 
         if ($request->hasFile('img')) {
-            File::delete('images/'.$jenis.'/'.$item->photo);
+            $item = Produk::findorfail($id);
+            File::delete('images/produk/'.$item->photo);
             
             $file = $request->file('img');
             $name = Carbon::now()->year.Carbon::now()->month.'_'.$file->getClientOriginalName();
-            $file->move('images/'.$jenis.'/', $name);
+            $file->move('images/produk/', $name);
             
             Produk::whereId($id)->update([
                 'nama'  => $request->nama,
@@ -116,7 +117,7 @@ class ProdukController extends Controller{
             $pesan = 'delminum';
         }
 
-        File::delete('images/'.$jenis.'/'.$item->photo);
+        File::delete('images/produk/', $item->photo);
         $item->delete();
 
         return redirect()->back()->with($pesan, $jenis.' berhasil dihapus.');
