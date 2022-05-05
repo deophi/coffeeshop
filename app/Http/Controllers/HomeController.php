@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use Auth;
 use App\Models\{
     Transaksi,
     Transaksi_detail
 };
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller{
     public function __construct(){
@@ -19,10 +18,10 @@ class HomeController extends Controller{
             return $next($request);
         });
     }
-    
+
     public function index(){
-        $transaksi = Transaksi::where('status', 0)->get();
-        $pesanan   = Transaksi::where('status', 1)->orderBy('waktu', 'asc')->get();
+        $transaksi = Transaksi::where('status', 1)->get();
+        $pesanan   = Transaksi::where('status', 2)->orderBy('waktu', 'asc')->get();
 
         return view('admin.index', compact('transaksi', 'pesanan'));
     }

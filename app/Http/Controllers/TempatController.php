@@ -4,12 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Models\{
     Produk,
-    Tempat
+    Tempat,
+    Tempat_photo
 };
 
 use Carbon\Carbon;
 use Illuminate\Http\Request;
-use File;
+use Illuminate\Support\Facades\File;
 
 class TempatController extends Controller{
     public function edit($id){
@@ -24,51 +25,47 @@ class TempatController extends Controller{
 
     public function store(Request $request){
         if ($request->hasFile('img')) {
-            $file = $request->file('img');
-            $name = Carbon::now()->year.Carbon::now()->month.'_'.$file->getClientOriginalName();
+            $file  = $request->file('img');
+            $maxId = Tempat_photo::max('id') + 1;
+            $name  = Carbon::now()->year.Carbon::now()->month.$maxId.'_'.$file->getClientOriginalName();
             $file->move('images/tempat/', $name);
-            
+
             Tempat::create([
                 'nama'  => $request->nama,
                 'stok' => $request->stok,
-                'photo' => $name
             ]);
 
-            return redirect()->back()->with('Tempat baru berhasil ditambahkan');
+            Tempat_photo::create([
+                'tempat_id' => Tempat::max('id'),
+                'photo'     => $name
+            ]);
+
+            return redirect()->back()->with('tempat', 'Tempat baru berhasil ditambahkan');
+        }else{
+
         }
     }
 
     public function update(Request $request, $id){
-        $item = Tempat::findorfail($id);
+        Tempat::whereId($id)->update([
+            'nama'  => $request->nama,
+            'stok'  => $request->stok
+        ]);
 
-        if ($request->hasFile('img')) {
-            File::delete('images/tempat/'.$item->photo);
-            
-            $file = $request->file('img');
-            $name = Carbon::now()->year.Carbon::now()->month.'_'.$file->getClientOriginalName();
-            $file->move('images/tempat/', $name);
-            
-            Tempat::whereId($id)->update([
-                'nama'  => $request->nama,
-                'stok'  => $request->stok,
-                'photo' => $name
-            ]);
-        }else{
-            Tempat::whereId($id)->update([
-                'nama'  => $request->nama,
-                'stok'  => $request->stok
-            ]);
-        }
-
-        return redirect()->route('produk.index')->with('ubahtempat', 'Tempat berhasil diubah');
+        return redirect()->route('produk.index')->with('tempat', 'Tempat berhasil diubah');
     }
 
     public function destroy($id){
-        $item = Tempat::findorfail($id);
+        $tempat = Tempat::findorfail($id);
+        $photo  = Tempat_photo::whereId($id)->get();
 
-        File::delete('images/tempat/'.$item->photo);
-        $item->delete();
+        foreach($photo as $r){
+            File::delete('images/tempat/'.$r->photo);
+        }
 
-        return redirect()->back()->with('tempathapus', 'Tempat berhasil dihapus.');
+        Tempat_photo::whereId($id)->delete();
+        $tempat->delete();
+
+        return redirect()->back()->with('tempat', 'Tempat berhasil dihapus.');
     }
 }

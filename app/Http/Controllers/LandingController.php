@@ -7,8 +7,7 @@ use App\Models\{
     Produk
 };
 use Illuminate\Http\Request;
-
-use Auth;
+use Illuminate\Support\Facades\Auth;
 
 class LandingController extends Controller{
     public function index(){
@@ -39,8 +38,9 @@ class LandingController extends Controller{
 
         return redirect()->back();
     }
-     public function destroy($id){
-         Cart::destroy($id);
-         return redirect()->back();
-     }
+
+    public function destroy($id){
+        Cart::destroy($id);
+        return redirect()->back();
+    }
 }

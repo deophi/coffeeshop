@@ -30,8 +30,10 @@
                   <td> Rp. {{ number_format($r->harga, 0,',','.') }} </td>
                   <td>
                     @if($r->status == 0)
-                      <p class="text-danger">Belum dibayar</p>
+                      <a href="{{ route('checkout.show', $r->id) }}"><p class="text-danger">Menunggu Pembayaran</p></a>
                     @elseif($r->status == 1)
+                      <a class="text-danger">Menunggu Konfirmasi</a>
+                    @elseif($r->status == 2)
                       <a class="text-warning">Dibooking</a>
                     @else
                       <a class="text-success">Selesai</a>

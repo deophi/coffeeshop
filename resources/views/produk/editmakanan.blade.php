@@ -8,10 +8,10 @@
                       <input type="hidden" name="i" value="1">
                       <input type="hidden" name="id" value="{{ $produk->id }}">
                       <div class="form-group">
-                        <input type="text" class="form-control" name="nama" value="{{ $produk->nama }}">
+                        <input type="text" class="form-control" name="nama" value="{{ $produk->nama }}" required>
                       </div>
                       <div class="form-group">
-                        <input type="number" class="form-control" name="harga" value="{{ $produk->harga }}">
+                        <input type="number" class="form-control" name="harga" value="{{ $produk->harga }}" required>
                       </div>
                       <div class="form-group">
                         <input type="file" name="img" class="file-upload-default">

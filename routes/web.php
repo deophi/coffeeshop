@@ -1,9 +1,9 @@
 <?php
 
 use App\Http\Controllers\{
-    CartController,
     HomeController,
     LandingController,
+    PhotoTempatController,
     ProdukController,
     ProfilController,
     ProsesController,
@@ -19,15 +19,16 @@ Route::resource('/', LandingController::class);
 Route::delete('{id}', [LandingController::class, 'destroy'])->name('index.destroy');
 
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
-    Route::resource('dashboard', HomeController::class);
-    Route::resource('produk', ProdukController::class);
-    Route::resource('profil', ProfilController::class);
+    Route::resource('dashboard', HomeController::class)->except(['create', 'store', 'edit', 'update', 'destory']);
+    Route::resource('photoTempat', PhotoTempatController::class)->except(['index', 'create', 'edit', 'update']);
+    Route::resource('produk', ProdukController::class)->except(['show', 'create', 'update']);
+    Route::resource('profil', ProfilController::class)->except(['show', 'create', 'store', 'edit', 'destory']);
 
     Route::get('checkout=check', [ProsesController::class, 'cekTempat'])->name('cekTempat');
-    Route::resource('checkout', ProsesController::class);
-    
-    Route::resource('rekening', RekeningController::class);
-    Route::resource('setting', SettingController::class);
-    Route::resource('statusOrder', StatusOrderController::class);
-    Route::resource('tempat', TempatController::class);
+    Route::resource('checkout', ProsesController::class)->except(['create', 'edit']);
+
+    Route::resource('rekening', RekeningController::class)->except(['index', 'show', 'create']);
+    Route::resource('setting', SettingController::class)->except(['show', 'create', 'store', 'edit', 'destory']);
+    Route::resource('statusOrder', StatusOrderController::class)->except(['show', 'create', 'store', 'edit', 'destory']);
+    Route::resource('tempat', TempatController::class)->except(['index', 'show', 'create']);
 });

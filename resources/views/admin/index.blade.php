@@ -30,11 +30,14 @@
                   </td>
                   <td>{{ Carbon\Carbon::parse($r->waktu)->translatedFormat('l, d F Y - H:i')}}</td>
                   <td> Rp. {{ number_format($r->harga, 0,',','.') }} </td>
+                  <td>
+                    <button class="btn btn-outline-primary" data-toggle="modal" data-target="#myModal">Lihat Bukti</button>
+                  </td>
                   <td width="10px">
-                    <form action="{{ route('checkout.update', $r->id) }}" method="POST">
+                    <form action="{{ route('statusOrder.update', $r->id) }}" method="POST">
                       @csrf
                       @method('patch')
-                      <input type="hidden" name="status" value="1">
+                      <input type="hidden" name="status" value="2">
                       <button class="btn btn-outline-warning">Konfirmasi</button>
                     </form>
                   </td>
@@ -46,6 +49,23 @@
                     </form>
                   </td>
                 </tr>
+                {{-- Start Modal Lihat Gambar Bukti Pembayaran --}}
+                <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                  <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                      </div>
+                      <div class="modal-body">
+                        <center><img src="{{ asset('images/bukti/'.$r->bukti) }}" width="450px"></center>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                {{-- End Modal Lihat Gambar Bukti Pembayaran --}}
               @endforeach
             </tbody>
           </table>
@@ -84,10 +104,10 @@
                   <td>{{ Carbon\Carbon::parse($r->waktu)->translatedFormat('l, d F Y - H:i')}}</td>
                   <td> Rp. {{ number_format($r->harga, 0,',','.') }} </td>
                   <td width="10px">
-                    <form action="{{ route('checkout.update', $r->id) }}" method="POST">
+                    <form action="{{ route('statusOrder.update', $r->id) }}" method="POST">
                       @csrf
                       @method('patch')
-                      <input type="hidden" name="status" value="2">
+                      <input type="hidden" name="status" value="3">
                       <button class="btn btn-outline-warning">Selesai</button>
                     </form>
                   </td>

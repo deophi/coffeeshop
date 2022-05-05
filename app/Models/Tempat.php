@@ -7,5 +7,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class Tempat extends Model{
     use HasFactory;
-    protected $fillable = ['nama', 'photo', 'stok'];
+    protected $fillable = ['nama', 'stok'];
 }

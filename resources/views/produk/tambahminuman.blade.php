@@ -6,10 +6,10 @@
                       @csrf
                       <input type="hidden" name="i" value="2">
                       <div class="form-group">
-                        <input type="text" class="form-control" name="nama" placeholder="Nama Minuman">
+                        <input type="text" class="form-control" name="nama" placeholder="Nama Minuman" required>
                       </div>
                       <div class="form-group">
-                        <input type="number" class="form-control" name="harga" placeholder="Harga Minuman">
+                        <input type="number" class="form-control" name="harga" placeholder="Harga Minuman" required>
                       </div>
                       <div class="form-group">
                         <input type="file" name="img" class="file-upload-default">

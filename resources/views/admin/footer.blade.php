@@ -10,11 +10,13 @@
     </div>
 
     <script src="{{ asset('admin/vendors/js/vendor.bundle.base.js') }}"></script>
+    <script src="{{ asset('admin/vendors/owl-carousel-2/owl.carousel.min.js') }}"></script>
     <script src="{{ asset('admin/js/off-canvas.js') }}"></script>
     <script src="{{ asset('admin/js/hoverable-collapse.js') }}"></script>
     <script src="{{ asset('admin/js/misc.js') }}"></script>
     <script src="{{ asset('admin/js/settings.js') }}"></script>
     <script src="{{ asset('admin/js/todolist.js') }}"></script>
     <script src="{{ asset('admin/js/file-upload.js') }}"></script>
+    <script src="{{ asset('admin/js/dashboard.js') }}"></script>
   </body>
 </html>

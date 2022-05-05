@@ -2,13 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use Auth;
-
 use App\Models\{
     Biodata,
     User,
 };
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class ProfilController extends Controller{

@@ -12,7 +12,7 @@ use App\Models\{
 };
 use Carbon\Carbon;
 use Illuminate\Http\Request;
-use Auth;
+use Illuminate\Support\Facades\Auth;
 
 class ProsesController extends Controller{
     public function index(){
@@ -27,7 +27,7 @@ class ProsesController extends Controller{
         $tempat    = Tempat::all();
         $tgl       = $request->tgl;
         $jam       = $request->jam;
-        
+
         return view('proses.cekTempat', compact('cart', 'tempat', 'tgl', 'jam'));
     }
 
@@ -63,16 +63,30 @@ class ProsesController extends Controller{
     }
 
     public function show($id){
+        $transaksi = Transaksi::findorfail($id);
+
+        if($transaksi->status > 0){
+            return redirect()->route('statusOrder.index');
+        }
+
         $rekening  = Rekening::all();
         $setting   = Setting::findorfail(1);
-        $transaksi = Transaksi::findorfail($id);
         return view('proses.pembayaran', compact('rekening', 'setting', 'transaksi'));
     }
 
     public function update(Request $request, $id){
-        Transaksi::whereId($id)->update(['status' => $request->status]);
-        
-        return redirect()->back()->with('update', 'Booking diupdate.');
+        if ($request->hasFile('img')) {
+            $file = $request->file('img');
+            $name = $id.Carbon::now()->year.Carbon::now()->month.'_'.$file->getClientOriginalName();
+            $file->move('images/bukti/', $name);
+
+            Transaksi::whereId($id)->update([
+                'bukti'  => $name,
+                'status' => 1
+            ]);
+        }
+
+        return redirect()->back();
     }
 
     public function destroy($id){

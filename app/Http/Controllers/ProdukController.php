@@ -2,15 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use Auth;
-use File;
-
 use App\Models\{
     Produk,
     Tempat
 };
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
 
 class ProdukController extends Controller{
     public function __construct(){
@@ -46,35 +45,35 @@ class ProdukController extends Controller{
     }
 
     public function store(Request $request){
+        if ($request->i == 1) {
+            $jenis = 'makanan';
+            $pesan = 'makan';
+        }else{
+            $jenis = 'minuman';
+            $pesan = 'minum';
+        }
+
         if ($request->hasFile('img')) {
-            $id = $request->i;
-            
-            if ($id == 1) {
-                $jenis = 'makanan';
-                $pesan = 'makan';
-            }else{
-                $jenis = 'minuman';
-                $pesan = 'minum';
-            }
-            
             $file = $request->file('img');
             $name = Carbon::now()->year.Carbon::now()->month.'_'.$file->getClientOriginalName();
             $file->move('images/produk/', $name);
-            
+
             Produk::create([
                 'nama'  => $request->nama,
                 'harga' => $request->harga,
                 'photo' => $name,
-                'jenis' => $id
+                'jenis' => $request->i
             ]);
 
             return redirect()->back()->with($pesan, $jenis.' berhasil ditambahkan');
+        }else{
+            return redirect()->back()->with($pesan, 'Silahkan tambahkan foto '.$jenis);
         }
     }
 
     public function update(Request $request, $id){
         $item = Produk::findorfail($id);
-        
+
         if ($item->jenis == 1) {
             $jenis = 'makanan';
             $pesan = 'makan';
@@ -86,11 +85,11 @@ class ProdukController extends Controller{
         if ($request->hasFile('img')) {
             $item = Produk::findorfail($id);
             File::delete('images/produk/'.$item->photo);
-            
+
             $file = $request->file('img');
             $name = Carbon::now()->year.Carbon::now()->month.'_'.$file->getClientOriginalName();
             $file->move('images/produk/', $name);
-            
+
             Produk::whereId($id)->update([
                 'nama'  => $request->nama,
                 'harga' => $request->harga,

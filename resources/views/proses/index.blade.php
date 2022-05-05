@@ -34,7 +34,6 @@
             </div>
             <div class="col-12"><a class="btn btn-outline-warning" href="{{ route('index') }}">Ubah Pesanan</a></div>
           </div>
-
         </div>
       </div>
     </div>

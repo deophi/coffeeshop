@@ -5,10 +5,10 @@
         <form class="forms-sample" action="{{ route('tempat.store') }}" method="post" enctype="multipart/form-data">
           @csrf
           <div class="form-group">
-            <input type="text" class="form-control" name="nama" placeholder="Nama Tempat">
+            <input type="text" class="form-control" name="nama" placeholder="Nama Tempat" required>
           </div>
           <div class="form-group">
-            <input type="number" class="form-control" name="stok" placeholder="Stok Meja">
+            <input type="number" class="form-control" name="stok" placeholder="Stok Meja" required>
           </div>
           <div class="form-group">
             <input type="file" name="img" class="file-upload-default">
