@@ -8,6 +8,7 @@ use App\Http\Controllers\{
     ProfilController,
     ProsesController,
     RekeningController,
+    ReportController,
     SettingController,
     StatusOrderController,
     TempatController
@@ -28,6 +29,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::resource('checkout', ProsesController::class)->except(['create', 'edit']);
 
     Route::resource('rekening', RekeningController::class)->except(['index', 'show', 'create']);
+    Route::get('laporan', [ReportController::class, 'index'])->name('laporan.index');
     Route::resource('setting', SettingController::class)->except(['show', 'create', 'store', 'edit', 'destory']);
     Route::resource('statusOrder', StatusOrderController::class)->except(['show', 'create', 'store', 'edit', 'destory']);
     Route::resource('tempat', TempatController::class)->except(['index', 'show', 'create']);

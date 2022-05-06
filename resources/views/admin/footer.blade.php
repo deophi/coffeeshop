@@ -18,5 +18,6 @@
     <script src="{{ asset('admin/js/todolist.js') }}"></script>
     <script src="{{ asset('admin/js/file-upload.js') }}"></script>
     <script src="{{ asset('admin/js/dashboard.js') }}"></script>
+    <script src="{{ asset('admin/js/owl-carousel.js') }}"></script>
   </body>
 </html>

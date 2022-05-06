@@ -21,8 +21,8 @@
       <!-- partial:../../partials/_sidebar.html -->
       <nav class="sidebar sidebar-offcanvas" id="sidebar">
         <div class="sidebar-brand-wrapper d-none d-lg-flex align-items-center justify-content-center fixed-top">
-          <a class="sidebar-brand brand-logo" href="#">Joe's Brother</a>
-          <a class="sidebar-brand brand-logo-mini" href="#">Joe</a>
+          <a class="sidebar-brand brand-logo" href="{{ route('dashboard.index') }}">Joe's Brother</a>
+          <a class="sidebar-brand brand-logo-mini" href="{{ route('dashboard.index') }}">Joe</a>
         </div>
         <ul class="nav">
           <li class="nav-item menu-items">
@@ -40,6 +40,14 @@
                 <i class="mdi mdi-playlist-play"></i>
               </span>
               <span class="menu-title">Produk</span>
+            </a>
+          </li>
+          <li class="nav-item menu-items">
+            <a class="nav-link" href="{{ route('laporan.index') }}">
+              <span class="menu-icon">
+                <i class="mdi mdi-playlist-play"></i>
+              </span>
+              <span class="menu-title">Laporan</span>
             </a>
           </li>
           <li class="nav-item menu-items">
@@ -67,7 +75,7 @@
         <!-- partial:../../partials/_navbar.html -->
         <nav class="navbar p-0 fixed-top d-flex flex-row">
           <div class="navbar-brand-wrapper d-flex d-lg-none align-items-center justify-content-center">
-            <a class="navbar-brand brand-logo-mini" href="{{ route('dashboard.index') }}"><img src="{{ asset('admin/images/logo-mini.svg') }}" alt="logo" /></a>
+            <a class="navbar-brand brand-logo-mini" href="{{ route('dashboard.index') }}">Joe</a>
           </div>
           <div class="navbar-menu-wrapper flex-grow d-flex align-items-stretch">
             <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
